@@ -1,5 +1,6 @@
 import os
 import sys
+from colorama import Fore, Style
 
 
 def create_day(x: int):
@@ -10,29 +11,39 @@ def create_day(x: int):
 
     if not os.path.exists("./src"):
         os.mkdir("src")
-        print("creating src folder")
+        print(Fore.LIGHTBLUE_EX, "[i]",
+              Style.RESET_ALL, " creating src folder")
 
     if not os.path.exists("./values"):
         os.mkdir("values")
-        print("creating values")
+        print(Fore.LIGHTBLUE_EX, "[i]",
+              Style.RESET_ALL, " creating values folder")
 
     PF = "./src/day"+str(x)+".py"
     if not os.path.exists(PF):
         f = open(PF, "w")
+        print(Fore.LIGHTBLUE_EX, "[i]",
+              Style.RESET_ALL, "creating ", PF, " file")
         f.write(PYTHON_TEMPLATE)
         f.close()
+        print(Fore.LIGHTBLUE_EX, "[i]",
+              Style.RESET_ALL, "writing contents to ", PF)
+
     else:
-        print(PF, " exists skipping")
+        print(Fore.LIGHTBLUE_EX, "[i]",
+              Style.RESET_ALL, " ", PF, " exists skipping file")
 
     VF = "./values/day"+str(x)
     if not os.path.exists(VF):
         open(VF, "x")
+        print(Fore.LIGHTBLUE_EX, "[i]",
+              Style.RESET_ALL, "creating ", VF, " file")
     else:
-        print(VF, " exists skipping")
+        print(Fore.LIGHTBLUE_EX, "[i]",
+              Style.RESET_ALL, " ", VF, " exists skipping file")
 
 
 def main():
-    print(sys.argv)
     if not sys.argv[1].isnumeric():
         if sys.argv[1] == "all":
             for x in range(25):
