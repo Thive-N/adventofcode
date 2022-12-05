@@ -3,25 +3,20 @@ text = open("./values/day5", "r").read()
 # text = open("./values/day5", "r").readlines()
 text = text.split("\n")
 #text = [x.split(" ") for x in text]
-stacks = []
-stacks.append([])
-stacks.append([])
-stacks.append([])
-stacks.append([])
-stacks.append([])
-stacks.append([])
-stacks.append([])
-stacks.append([])
-stacks.append([])
-stacks[0] = ["F", "D", "B", "Z", "T", "J", "R", "N"]
-stacks[1] = ["R", "S", "N", "J", "H"]
-stacks[2] = ["C", "R", "N", "J", "G", "Z", "F", "Q"]
-stacks[3] = ["F", "V", "N", "G", "R", "T", "Q"]
-stacks[4] = ["L", "T", "Q", "F"]
-stacks[5] = ["Q", "C", "W", "Z", "B", "R", "G", "N"]
-stacks[6] = ["F", "C", "L", "S", "N", "H", "M"]
-stacks[7] = ["D", "N", "Q", "M", "T", "J"]
-stacks[8] = ["P", "G", "S"]
+
+stacks = [[] for x in range(9)]
+for x in text:
+    sn = 0
+    if not x.startswith("["):
+        break
+    x = list(x)
+    for i in range(1, 35, 4):
+        if x[i] != " ":
+            stacks[sn].append(x[i])
+
+        sn += 1
+
+stacks = [x[::-1] for x in stacks]
 
 for line in text:
     if not line.startswith("move"):
