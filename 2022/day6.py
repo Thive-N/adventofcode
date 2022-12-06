@@ -1,4 +1,4 @@
-text = open("./values/day6", "r").read()
+text = open("./values/2022-6", "r").read()
 
 
 def unique_n(n):

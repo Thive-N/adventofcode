@@ -1,4 +1,4 @@
-text = open("./values/day2", "r").read()
+text = open("./values/2022-2", "r").read()
 text = text.split("\n")
 text = [x.split(" ") for x in text]
 sum = 0

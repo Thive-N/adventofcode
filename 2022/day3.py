@@ -1,4 +1,4 @@
-text = open("./values/day3", "r").readlines()
+text = open("./values/2022-3", "r").readlines()
 text = [x.strip() for x in text]
 
 p = 0

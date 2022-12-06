@@ -1,6 +1,6 @@
 import re
 import copy
-text = open("./values/day5", "r").read()
+text = open("./values/2022-5", "r").read()
 text = text.split("\n")
 
 stacks1 = [[] for x in range(9)]

@@ -1,1 +1,3 @@
-values/*
+/values
+config.json
+**/__pycache__
