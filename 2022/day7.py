@@ -72,7 +72,17 @@ def traverse(node):
     if s <= 100000:
         global lt100k
         lt100k += s
-    return su
+    return s
+
+
+def traversee(node):
+    s = 0
+    for val in node.values():
+        if isinstance(val, int):
+            s += val
+        else:
+            traverse(val)
+    return s
 
 
 def traverse2(node):
@@ -92,7 +102,8 @@ def traverse2(node):
 print(json.dumps(tree, indent=4))
 lt100k = 0
 smallest = 99999999999999999
-free = traverse(tree)-40000000
+free = traversee(tree)-40000000
+traverse(tree)
 traverse2(tree)
 print(lt100k)
 print(smallest)
