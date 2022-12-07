@@ -1,4 +1,4 @@
-import os
+import json
 text = open("./values/2022-7", "r").read()
 # text = open("./values/2022-7", "r").readtext()
 text = text.split("\n")
@@ -89,10 +89,10 @@ def traverse2(node):
     return s
 
 
-# a variable
+print(json.dumps(tree, indent=4))
 lt100k = 0
 smallest = 99999999999999999
 free = traverse(tree)-40000000
-traverse2()
+traverse2(tree)
 print(lt100k)
 print(smallest)
