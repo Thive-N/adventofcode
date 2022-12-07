@@ -1,4 +1,4 @@
-import json
+import os
 text = open("./values/2022-7", "r").read()
 # text = open("./values/2022-7", "r").readtext()
 text = text.split("\n")
@@ -40,23 +40,17 @@ for line in text:
         continue
 
     # useless commands
-    if tokens[1] in ["ls"]:
+    if tokens[1] == "ls" or tokens[0] == "dir":
         continue
 
     # all if statements above should move on to the next loop
-
-    # if the command is dir
-    elif tokens[0] == "dir":
-        # get the name
-        name = tokens[1]
-        # add that name to the node as a new hashset
-        node[name] = {}
 
     # if its cd
     # add the name to path
     # set node to the new node
     elif tokens[1] == "cd":
         name = tokens[2]
+        node[name] = {}
         path.append(name)
         node = node[name]
 
@@ -64,22 +58,41 @@ for line in text:
     else:
         node[tokens[1]] = int(tokens[0])
 
-# a variable
-total = 0
 
-# print(json.dumps(tree, indent=4))
-
-
-def fullsize(node):
+def traverse(node):
+    su = 0
     s = 0
-    for v in node.values():
-        if isinstance(v, int):
-            s += v
+    for val in node.values():
+        if isinstance(val, int):
+            s += val
+            su += val
         else:
-            s += fullsize(v)
+            su += traverse(val)
+
+    if s <= 100000:
+        global lt100k
+        lt100k += s
+    return su
+
+
+def traverse2(node):
+    s = 0
+    for val in node.values():
+        if isinstance(val, int):
+            s += val
+        else:
+            s += traverse(val)
+
+    if s >= free:
+        global smallest
+        smallest = min(smallest, s)
     return s
 
 
-size = fullsize(tree)
-
-print(size)
+# a variable
+lt100k = 0
+smallest = 99999999999999999
+free = traverse(tree)-40000000
+traverse2()
+print(lt100k)
+print(smallest)
