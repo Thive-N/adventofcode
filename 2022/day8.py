@@ -1,11 +1,18 @@
-# text = open("./values/2022-8", "r").read()
-text = open("./values/input.txt", "r").read()
-# text = open("./values/2022-8", "r").readlines()
+import multiprocessing
+text = open("./values/2022-8", "r").read()
 text = text.split("\n")
 text = [list(map(int, list(x))) for x in text]
 
+maps = []
 
-def is_visible(text, x, y):
+for x in range(len(text)):
+    for y in range(len(text[x])):
+        maps.append([x, y])
+
+
+def is_visible(xy):
+    x = xy[0]
+    y = xy[1]
     if x == 0 or x == len(text) - 1 or y == 0 or y == len(text) - 1:
         return True
 
@@ -49,7 +56,9 @@ def is_visible(text, x, y):
     return False
 
 
-def scenic_score(text, x, y):
+def scenic_score(xy):
+    x = xy[0]
+    y = xy[1]
     ls = rs = us = ds = 0
 
     for dx in range(x-1, -1, -1):
@@ -75,14 +84,15 @@ def scenic_score(text, x, y):
     return ls * rs * us * ds
 
 
-visible = 0
-ss = 0
+def main():
+    with multiprocessing.Pool() as pool:
+        x1 = pool.map(is_visible, maps)
+        x2 = pool.map(scenic_score, maps)
+    yield sum(x1)
+    yield max(x2)
 
-for x in range(len(text)):
-    for y in range(len(text[x])):
-        if is_visible(text, x, y):
-            visible += 1
-        ss = max(ss, scenic_score(text, x, y))
 
-print(visible)
-print(ss)
+if __name__ == '__main__':
+    x = list(main())
+    print(x[0])
+    print(x[1])
