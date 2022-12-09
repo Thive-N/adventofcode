@@ -7,30 +7,30 @@ text = text.split("\n")
 text = [x.strip().split() for x in text]
 
 moves = {
-    Point.from_tuple(0, 2): Point.from_tuple(0, 1),
-    Point.from_tuple(0, -2): Point.from_tuple(0, -1),
+    Point(0, 2): Point(0, 1),
+    Point(0, -2): Point(0, -1),
 
-    Point.from_tuple(1, 2): Point.from_tuple(1, 1),
-    Point.from_tuple(1, -2): Point.from_tuple(1, -1),
+    Point(1, 2): Point(1, 1),
+    Point(1, -2): Point(1, -1),
 
-    Point.from_tuple(2, -1): Point.from_tuple(1, -1),
-    Point.from_tuple(2, 1): Point.from_tuple(1, 1),
+    Point(2, -1): Point(1, -1),
+    Point(2, 1): Point(1, 1),
 
-    Point.from_tuple(-1, 2): Point.from_tuple(-1, 1),
-    Point.from_tuple(-1, -2): Point.from_tuple(-1, -1),
+    Point(-1, 2): Point(-1, 1),
+    Point(-1, -2): Point(-1, -1),
 
-    Point.from_tuple(-2, 1): Point.from_tuple(-1, 1),
-    Point.from_tuple(-2, -1): Point.from_tuple(-1, -1),
+    Point(-2, 1): Point(-1, 1),
+    Point(-2, -1): Point(-1, -1),
 
-    Point.from_tuple(2, 0): Point.from_tuple(1, 0),
-    Point.from_tuple(-2, 0): Point.from_tuple(-1, 0),
+    Point(2, 0): Point(1, 0),
+    Point(-2, 0): Point(-1, 0),
 
     # cases for 10 rope
-    Point.from_tuple(2, 2): Point.from_tuple(1, 1),
-    Point.from_tuple(2, -2): Point.from_tuple(1, -1),
+    Point(2, 2): Point(1, 1),
+    Point(2, -2): Point(1, -1),
 
-    Point.from_tuple(-2, 2): Point.from_tuple(-1, 1),
-    Point.from_tuple(-2, -2): Point.from_tuple(-1, -1)
+    Point(-2, 2): Point(-1, 1),
+    Point(-2, -2): Point(-1, -1)
 }
 
 visited = set()
