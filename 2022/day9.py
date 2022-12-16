@@ -7,6 +7,7 @@ text = text.split("\n")
 text = [x.strip().split() for x in text]
 
 moves = {
+    #
     Point(0, 2): Point(0, 1),
     Point(0, -2): Point(0, -1),
 
@@ -68,6 +69,7 @@ for direction, steps in text:
             points[0].x += 1
 
         for i in range(1, 10):
+
             if (max(abs(points[i-1][0]-points[i][0]), abs(points[i-1][1]-points[i][1])) > 1):
                 key = (points[i-1] - points[i])
 
