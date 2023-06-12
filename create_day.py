@@ -1,4 +1,5 @@
-from lib.logging import (eprint, iprint, wprint)
+from lib.log import (eprint, iprint, wprint)
+from lib.api import (get_data)
 import os
 import sys
 
@@ -37,6 +38,11 @@ def create_day(year: int, day: int) -> None:
     else:
         iprint(VF, " exists skipping file")
 
+    data = get_data(year, day)
+    with open(VF, "w") as f:
+        iprint("writing data to ", VF)
+        f.write(data)
+
 
 def main():
     if len(sys.argv) < 2:
@@ -58,6 +64,7 @@ def main():
     year = int(sys.argv[1])
     day = int(sys.argv[2])
 
+    # TODO: make this a bit more dynamic
     if 2015 > year or year > 2022:
         eprint("invalid year [", str(year), "]")
         return
